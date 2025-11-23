@@ -406,7 +406,7 @@ const App: React.FC = () => {
       <div className={`
         fixed inset-0 z-50 md:relative md:inset-auto md:z-10 md:h-full
         transition-all duration-300 ease-in-out bg-white md:bg-transparent
-        ${(showGenerator || (mode === AppMode.EDITOR && !showEditorSettings)) ? '' : 'pointer-events-none md:pointer-events-auto'}
+        ${(showGenerator || ((mode as AppMode) === AppMode.EDITOR && !showEditorSettings)) ? '' : 'pointer-events-none md:pointer-events-auto'}
         ${/* Visibility logic */ ''}
         ${showGenerator ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0 md:hidden'}
       `}>

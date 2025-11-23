@@ -209,7 +209,7 @@ const App: React.FC = () => {
             )}
 
             {/* In Editor: Show Settings Button */}
-            {mode === AppMode.EDITOR && (
+            {(mode as AppMode) === AppMode.EDITOR && (
                  <button 
                     onClick={() => setShowEditorSettings(true)}
                     className="bg-white/90 backdrop-blur-md p-2 rounded-full shadow-md text-gray-600 active:scale-95 transition-transform border border-white/50"
@@ -219,7 +219,7 @@ const App: React.FC = () => {
             )}
             
             {/* In Editor: Exit Button */}
-            {mode === AppMode.EDITOR && (
+            {(mode as AppMode) === AppMode.EDITOR && (
                  <button 
                     onClick={() => setMode(AppMode.VIEWER)}
                     className="bg-white/90 backdrop-blur-md p-2 rounded-full shadow-md text-red-500 active:scale-95 transition-transform border border-white/50"

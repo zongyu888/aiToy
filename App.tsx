@@ -272,7 +272,7 @@ const App: React.FC = () => {
         {mode === AppMode.EDITOR && (
             <>
                 {/* Floating Toggle: Move vs Interact */}
-                <div className="absolute top-20 left-1/2 -translate-x-1/2 z-40 bg-white/90 backdrop-blur rounded-full p-1 shadow-lg border border-gray-200 flex gap-1 pointer-events-auto">
+                <div className="absolute top-14 left-1/2 -translate-x-1/2 z-40 bg-white/90 backdrop-blur rounded-full p-1 shadow-lg border border-gray-200 flex gap-1 pointer-events-auto">
                     <button 
                         onClick={() => setInteractionMode('orbit')}
                         className={`px-4 py-2 rounded-full text-sm font-bold transition-all flex items-center gap-2 ${interactionMode === 'orbit' ? 'bg-blue-500 text-white shadow-md' : 'text-gray-500 hover:bg-gray-100'}`}
@@ -375,7 +375,7 @@ const App: React.FC = () => {
 
                 <button
                     onClick={enterEditor}
-                    className={`flex flex-col md:flex-row items-center justify-center p-3 rounded-xl transition-all flex-1 md:flex-none ${mode === AppMode.EDITOR ? 'bg-green-500 text-white shadow-lg shadow-green-200' : 'text-gray-500 hover:bg-white/50'}`}
+                    className="flex flex-col md:flex-row items-center justify-center p-3 rounded-xl transition-all flex-1 md:flex-none text-gray-500 hover:bg-white/50"
                 >
                     <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" /></svg>
                     <span className="text-[10px] md:hidden mt-1 font-medium">Edit</span>

@@ -20,6 +20,7 @@ const App: React.FC = () => {
   const [editorColor, setEditorColor] = useState<string>('#FCD34D');
   const [isDeleting, setIsDeleting] = useState<boolean>(false);
   const [interactionMode, setInteractionMode] = useState<'orbit' | 'build'>('orbit');
+  const [isPaletteOpen, setIsPaletteOpen] = useState(true);
 
   // Saved Models State
   const [savedModels, setSavedModels] = useState<VoxelModel[]>([]);
@@ -46,6 +47,7 @@ const App: React.FC = () => {
     if (mode === AppMode.EDITOR) {
         setInteractionMode('orbit');
         setShowEditorSettings(false);
+        setIsPaletteOpen(true);
     }
   }, [mode]);
 
@@ -235,7 +237,7 @@ const App: React.FC = () => {
         fixed inset-0 z-50 md:relative md:inset-auto md:z-10 md:h-full md:block
         transition-transform duration-300 ease-in-out bg-white md:bg-transparent
         ${showGallery ? 'translate-x-0' : '-translate-x-full md:translate-x-0 md:w-auto'}
-        ${mode === AppMode.EDITOR ? 'md:hidden' : ''}
+        ${(mode as AppMode) === AppMode.EDITOR ? 'md:hidden' : ''}
       `}>
           {/* Mobile Close Button for Gallery */}
           <div className="md:hidden absolute top-4 right-4 z-50">
@@ -270,7 +272,7 @@ const App: React.FC = () => {
         {mode === AppMode.EDITOR && (
             <>
                 {/* Floating Toggle: Move vs Interact */}
-                <div className="absolute bottom-32 left-1/2 -translate-x-1/2 z-40 bg-white/90 backdrop-blur rounded-full p-1 shadow-lg border border-gray-200 flex gap-1 pointer-events-auto">
+                <div className="absolute top-20 left-1/2 -translate-x-1/2 z-40 bg-white/90 backdrop-blur rounded-full p-1 shadow-lg border border-gray-200 flex gap-1 pointer-events-auto">
                     <button 
                         onClick={() => setInteractionMode('orbit')}
                         className={`px-4 py-2 rounded-full text-sm font-bold transition-all flex items-center gap-2 ${interactionMode === 'orbit' ? 'bg-blue-500 text-white shadow-md' : 'text-gray-500 hover:bg-gray-100'}`}
@@ -286,41 +288,58 @@ const App: React.FC = () => {
                 </div>
 
                 {/* Mobile Editor Toolbar (Palette & Tools) */}
-                <div className="absolute bottom-4 left-4 right-4 z-40 bg-white/95 backdrop-blur-xl border border-white/40 rounded-2xl shadow-2xl p-3 pointer-events-auto md:hidden animate-in slide-in-from-bottom-10">
+                <div className={`absolute bottom-4 z-40 bg-white/95 backdrop-blur-xl border border-white/40 rounded-2xl shadow-2xl p-3 pointer-events-auto md:hidden transition-all duration-300 ease-[cubic-bezier(0.25,0.1,0.25,1)] ${isPaletteOpen ? 'left-4 right-4' : 'right-4 w-auto'}`}>
                     <div className="flex items-center gap-3">
                         {/* Tool Toggle: Paint / Erase */}
-                        <div className="flex flex-col gap-1 min-w-[3rem]">
+                        <div className={`flex flex-col gap-1 ${isPaletteOpen ? 'min-w-[3rem]' : ''}`}>
                              <button 
                                 onClick={() => setIsDeleting(false)}
                                 className={`p-2 rounded-lg flex justify-center items-center transition-all ${!isDeleting ? 'bg-blue-100 text-blue-600 ring-2 ring-blue-500' : 'bg-gray-100 text-gray-400'}`}
+                                title="Paint Mode"
                             >
                                 <span className="text-lg">🖌️</span>
                             </button>
                              <button 
                                 onClick={() => setIsDeleting(true)}
                                 className={`p-2 rounded-lg flex justify-center items-center transition-all ${isDeleting ? 'bg-red-100 text-red-600 ring-2 ring-red-500' : 'bg-gray-100 text-gray-400'}`}
+                                title="Erase Mode"
                             >
                                 <span className="text-lg">🗑️</span>
                             </button>
                         </div>
 
                         {/* Divider */}
-                        <div className="w-px h-16 bg-gray-200"></div>
+                        {isPaletteOpen && <div className="w-px h-16 bg-gray-200 animate-in fade-in"></div>}
 
                         {/* Palette Scroll */}
-                        <div className="flex-1 overflow-x-auto scrollbar-hide flex gap-2 py-1 items-center">
-                            {PALETTE_COLORS.map(color => (
-                                <button
-                                    key={color}
-                                    onClick={() => { setEditorColor(color); setIsDeleting(false); }}
-                                    className={`
-                                        flex-shrink-0 w-10 h-10 rounded-full border-2 transition-all duration-200
-                                        ${editorColor === color && !isDeleting ? 'border-gray-800 scale-110 shadow-md' : 'border-transparent hover:border-gray-300'}
-                                    `}
-                                    style={{ backgroundColor: color }}
-                                />
-                            ))}
-                        </div>
+                        {isPaletteOpen && (
+                            <div className="flex-1 overflow-x-auto scrollbar-hide flex gap-2 py-1 items-center animate-in slide-in-from-right-5 fade-in duration-300">
+                                {PALETTE_COLORS.map(color => (
+                                    <button
+                                        key={color}
+                                        onClick={() => { setEditorColor(color); setIsDeleting(false); }}
+                                        className={`
+                                            flex-shrink-0 w-10 h-10 rounded-full border-2 transition-all duration-200
+                                            ${editorColor === color && !isDeleting ? 'border-gray-800 scale-110 shadow-md' : 'border-transparent hover:border-gray-300'}
+                                        `}
+                                        style={{ backgroundColor: color }}
+                                    />
+                                ))}
+                            </div>
+                        )}
+                        
+                        {/* Collapse/Expand Toggle */}
+                        <button 
+                            onClick={() => setIsPaletteOpen(!isPaletteOpen)}
+                            className="ml-1 p-2 rounded-xl bg-gray-50 hover:bg-gray-100 text-gray-500 border border-gray-200 shadow-sm transition-all"
+                            title={isPaletteOpen ? "Collapse Menu" : "Expand Colors"}
+                        >
+                            {isPaletteOpen ? (
+                                <svg className="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
+                            ) : (
+                                <div className="w-6 h-6 rounded-full border border-gray-300 shadow-sm" style={{ backgroundColor: editorColor }}></div>
+                            )}
+                        </button>
                     </div>
                 </div>
             </>

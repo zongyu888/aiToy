@@ -13,6 +13,7 @@ interface EditorPanelProps {
   onSaveAsNew: () => void;
   isMobile?: boolean;
   onClose?: () => void;
+  onExit?: () => void;
 }
 
 export const EditorPanel: React.FC<EditorPanelProps> = ({ 
@@ -26,7 +27,8 @@ export const EditorPanel: React.FC<EditorPanelProps> = ({
     onSave,
     onSaveAsNew,
     isMobile,
-    onClose
+    onClose,
+    onExit
 }) => {
   return (
     <div className="p-6 bg-white flex flex-col h-full pt-20 md:pt-6">
@@ -128,6 +130,15 @@ export const EditorPanel: React.FC<EditorPanelProps> = ({
             >
                 Clear Grid
             </button>
+            
+            {onExit && (
+                <button
+                    onClick={onExit}
+                    className="w-full py-3 rounded-2xl font-bold text-gray-500 bg-white border border-gray-200 hover:bg-gray-50 transition-colors active:scale-95 text-sm flex items-center justify-center gap-2"
+                >
+                    <span className="text-lg">🚪</span> Exit Editor
+                </button>
+            )}
         </div>
     </div>
   );

@@ -17,21 +17,35 @@
           scrollbar-width: none;
       }
     </style>
+    <script>
+      // 1. Shim for process.env to prevent crashes in browser environment
+      window.process = { env: { NODE_ENV: 'development' } };
+
+      // 2. Check if running via file protocol and warn user
+      if (window.location.protocol === 'file:') {
+        alert('Warning: You are opening this file directly (file://). The app will not work due to browser security restrictions on ES Modules.\n\nPlease run a local server (e.g., "python -m http.server" or VS Code Live Server) and access it via http://localhost:...');
+      }
+    </script>
   <script type="importmap">
 {
   "imports": {
-    "react": "https://aistudiocdn.com/react@^19.2.0",
-    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
-    "react/": "https://aistudiocdn.com/react@^19.2.0/",
-    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.30.0",
-    "@react-three/fiber": "https://aistudiocdn.com/@react-three/fiber@^9.4.0",
-    "@react-three/drei": "https://aistudiocdn.com/@react-three/drei@^10.7.7",
-    "three": "https://aistudiocdn.com/three@^0.181.2"
+    "react": "https://esm.sh/react@18.3.1?dev",
+    "react/": "https://esm.sh/react@18.3.1/",
+    "react-dom": "https://esm.sh/react-dom@18.3.1?dev",
+    "react-dom/": "https://esm.sh/react-dom@18.3.1/",
+    "react-dom/client": "https://esm.sh/react-dom@18.3.1/client?dev",
+    "react/jsx-runtime": "https://esm.sh/react@18.3.1/jsx-runtime?dev",
+    "@google/genai": "https://esm.sh/@google/genai@1.30.0",
+    "@react-three/fiber": "https://esm.sh/@react-three/fiber@8.16.8?external=react,react-dom,three",
+    "@react-three/drei": "https://esm.sh/@react-three/drei@9.108.3?external=react,react-dom,three,@react-three/fiber",
+    "three": "https://esm.sh/three@0.165.0",
+    "uuid": "https://esm.sh/uuid@9.0.1"
   }
 }
 </script>
 </head>
   <body>
     <div id="root"></div>
+    <script type="module" src="index.tsx"></script>
   </body>
 </html>

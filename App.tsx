@@ -187,6 +187,18 @@ const App: React.FC = () => {
       setShowGenerator(false);
   };
 
+  const toggleFullscreen = () => {
+    if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(err => {
+            console.log(`Error attempting to enable full-screen mode: ${err.message} (${err.name})`);
+        });
+    } else {
+        if (document.exitFullscreen) {
+            document.exitFullscreen();
+        }
+    }
+  };
+
   return (
     <div className="flex flex-col md:flex-row h-screen w-screen overflow-hidden font-sans text-gray-800 bg-gray-50 fixed inset-0">
       
@@ -366,11 +378,11 @@ const App: React.FC = () => {
                 </button>
 
                 <button
-                    onClick={() => { setMode(AppMode.GENERATOR); setShowGenerator(true); }}
-                    className={`flex flex-col md:flex-row items-center justify-center p-3 rounded-xl transition-all flex-1 md:flex-none ${mode === AppMode.GENERATOR ? 'bg-violet-600 text-white shadow-lg shadow-violet-200' : 'text-gray-500 hover:bg-white/50'}`}
+                    onClick={toggleFullscreen}
+                    className="flex flex-col md:flex-row items-center justify-center p-3 rounded-xl transition-all flex-1 md:flex-none text-gray-500 hover:bg-white/50"
                 >
-                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
-                    <span className="text-[10px] md:hidden mt-1 font-medium">AI</span>
+                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" /></svg>
+                    <span className="text-[10px] md:hidden mt-1 font-medium">Full</span>
                 </button>
 
                 <button
@@ -445,6 +457,7 @@ const App: React.FC = () => {
                     onSaveAsNew={() => { handleSaveAsNewModel(); setShowEditorSettings(false); }}
                     isMobile={true} // Hint to component to adapt layout if needed
                     onClose={() => setShowEditorSettings(false)}
+                    onExit={() => setMode(AppMode.VIEWER)}
                 />
           </div>
       </div>

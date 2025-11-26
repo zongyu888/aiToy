@@ -211,46 +211,6 @@ export const PRESET_MODELS: VoxelModel[] = [
     ]
   },
   {
-    id: 'duck',
-    name: 'Rubber Duck',
-    category: 'animal',
-    voxels: [
-      // Body Base (Water level)
-      { id: 'd_b1', x: 0, y: 0, z: 0, color: '#FCD34D' }, { id: 'd_b2', x: 1, y: 0, z: 0, color: '#FCD34D' }, { id: 'd_b3', x: -1, y: 0, z: 0, color: '#FCD34D' },
-      { id: 'd_b4', x: 0, y: 0, z: 1, color: '#FCD34D' }, { id: 'd_b5', x: 1, y: 0, z: 1, color: '#FCD34D' }, { id: 'd_b6', x: -1, y: 0, z: 1, color: '#FCD34D' },
-      { id: 'd_b7', x: 0, y: 0, z: -1, color: '#FCD34D' }, { id: 'd_b8', x: 1, y: 0, z: -1, color: '#FCD34D' }, { id: 'd_b9', x: -1, y: 0, z: -1, color: '#FCD34D' },
-      { id: 'd_b10', x: -2, y: 0, z: 0, color: '#FCD34D' }, // Tail base
-      
-      // Body Middle
-      { id: 'd_m1', x: 0, y: 1, z: 0, color: '#FCD34D' }, { id: 'd_m2', x: 1, y: 1, z: 0, color: '#FCD34D' }, { id: 'd_m3', x: -1, y: 1, z: 0, color: '#FCD34D' },
-      { id: 'd_m4', x: 0, y: 1, z: 1, color: '#FCD34D' }, { id: 'd_m5', x: 1, y: 1, z: 1, color: '#FCD34D' }, 
-      { id: 'd_m7', x: 0, y: 1, z: -1, color: '#FCD34D' }, { id: 'd_m8', x: 1, y: 1, z: -1, color: '#FCD34D' },
-      { id: 'd_m10', x: -2, y: 1, z: 0, color: '#FCD34D' }, // Tail tip
-
-      // Wings (Orange-ish tint for contrast)
-      { id: 'd_w1', x: -1, y: 1, z: 2, color: '#FBBF24' }, { id: 'd_w2', x: 0, y: 1, z: 2, color: '#FBBF24' },
-      { id: 'd_w3', x: -1, y: 1, z: -2, color: '#FBBF24' }, { id: 'd_w4', x: 0, y: 1, z: -2, color: '#FBBF24' },
-
-      // Neck
-      { id: 'd_n1', x: 2, y: 1, z: 0, color: '#FCD34D' },
-      { id: 'd_n2', x: 2, y: 2, z: 0, color: '#FCD34D' }, 
-
-      // Head
-      { id: 'd_h1', x: 2, y: 3, z: 0, color: '#FCD34D' }, 
-      { id: 'd_h2', x: 1, y: 3, z: 0, color: '#FCD34D' },
-      { id: 'd_h3', x: 2, y: 3, z: 1, color: '#FCD34D' }, 
-      { id: 'd_h4', x: 2, y: 3, z: -1, color: '#FCD34D' },
-      
-      // Beak
-      { id: 'd_bk1', x: 3, y: 3, z: 0, color: '#F97316' },
-
-      // Eyes
-      { id: 'd_e1', x: 2, y: 4, z: 1, color: '#1F2937' },
-      { id: 'd_e2', x: 2, y: 4, z: -1, color: '#1F2937' },
-      { id: 'd_top', x: 2, y: 4, z: 0, color: '#FCD34D' },
-    ]
-  },
-  {
     id: 'penguin',
     name: 'Penguin',
     category: 'animal',

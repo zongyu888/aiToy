@@ -1,5 +1,5 @@
 {
   "name": "Voxel Toy Box",
-  "description": "A creative 3D sandbox to visualize, build, and generate voxel art using Gemini AI. Turn images and text into 3D block sculptures.",
+  "description": "一个富有创意的 3D 沙盒，使用 Gemini AI 可视化、构建和生成体素艺术。将图像和文本转换为 3D 方块雕塑。",
   "requestFramePermissions": []
 }

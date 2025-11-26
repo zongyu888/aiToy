@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { VoxelModel } from '../types';
 import { PRESET_MODELS } from '../constants';
@@ -14,7 +15,7 @@ export const Gallery: React.FC<GalleryProps> = ({ onSelect, selectedId, savedMod
     <div className="flex flex-col h-full bg-white border-r border-gray-100 w-full md:w-80 shadow-lg z-10 relative">
       <div className="p-6 pt-20 md:pt-6 bg-gradient-to-b from-blue-500 to-blue-600 text-white shadow-md z-10 sticky top-0">
         <h1 className="text-2xl font-extrabold tracking-tight">🧸 Toy Box</h1>
-        <p className="text-blue-100 text-sm mt-1 font-medium">Pick a model to build</p>
+        <p className="text-blue-100 text-sm mt-1 font-medium">选择一个模型开始构建</p>
       </div>
       
       <div className="flex-1 overflow-y-auto p-4 space-y-8 scrollbar-hide pb-32 md:pb-4 bg-white">
@@ -22,7 +23,7 @@ export const Gallery: React.FC<GalleryProps> = ({ onSelect, selectedId, savedMod
         {/* Saved Creations Section */}
         {savedModels && savedModels.length > 0 && (
             <div>
-                <h3 className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-3 px-1">My Creations</h3>
+                <h3 className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-3 px-1">我的作品</h3>
                 <div className="grid grid-cols-2 gap-3">
                     {savedModels.map((model) => (
                         <button
@@ -40,7 +41,7 @@ export const Gallery: React.FC<GalleryProps> = ({ onSelect, selectedId, savedMod
                             <div 
                                 onClick={(e) => onDelete(model.id, e)}
                                 className="absolute top-2 right-2 p-1.5 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-full transition-colors z-10"
-                                title="Delete"
+                                title="删除"
                             >
                                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
                             </div>
@@ -57,7 +58,7 @@ export const Gallery: React.FC<GalleryProps> = ({ onSelect, selectedId, savedMod
 
         {/* Presets Section */}
         <div>
-            <h3 className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-3 px-1">Presets</h3>
+            <h3 className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-3 px-1">预设模型</h3>
             <div className="grid grid-cols-2 gap-3">
             {PRESET_MODELS && PRESET_MODELS.map((model) => (
                 <button

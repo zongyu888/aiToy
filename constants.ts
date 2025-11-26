@@ -4,7 +4,7 @@ import { VoxelModel } from './types';
 export const PRESET_MODELS: VoxelModel[] = [
   {
     id: 'duck',
-    name: 'Rubber Duck',
+    name: '橡皮鸭',
     category: 'animal',
     voxels: [
       // Body Base (Water level)
@@ -44,7 +44,7 @@ export const PRESET_MODELS: VoxelModel[] = [
   },
   {
     id: 'robot',
-    name: 'Retro Robot',
+    name: '复古机器人',
     category: 'custom',
     voxels: [
         // Feet
@@ -83,7 +83,7 @@ export const PRESET_MODELS: VoxelModel[] = [
   },
   {
     id: 'castle',
-    name: 'Magic Castle',
+    name: '魔法城堡',
     category: 'custom',
     voxels: [
         // Base
@@ -127,7 +127,7 @@ export const PRESET_MODELS: VoxelModel[] = [
   },
   {
     id: 'fox',
-    name: 'Orange Fox',
+    name: '橙色狐狸',
     category: 'animal',
     voxels: [
         // Rear Body/Legs
@@ -158,7 +158,7 @@ export const PRESET_MODELS: VoxelModel[] = [
   },
   {
     id: 'cake',
-    name: 'Birthday Cake',
+    name: '生日蛋糕',
     category: 'object',
     voxels: [
         // Bottom Tier (5x5)
@@ -182,7 +182,7 @@ export const PRESET_MODELS: VoxelModel[] = [
   },
   {
     id: 'rocket',
-    name: 'Space Rocket',
+    name: '太空火箭',
     category: 'vehicle',
     voxels: [
         // Fins
@@ -212,7 +212,7 @@ export const PRESET_MODELS: VoxelModel[] = [
   },
   {
     id: 'penguin',
-    name: 'Penguin',
+    name: '企鹅',
     category: 'animal',
     voxels: [
       // Feet
@@ -252,7 +252,7 @@ export const PRESET_MODELS: VoxelModel[] = [
   },
   {
     id: 'heart',
-    name: '3D Heart',
+    name: '3D 爱心',
     category: 'object',
     voxels: [
       // Center Layer (z=0) - Darker Red
@@ -279,7 +279,7 @@ export const PRESET_MODELS: VoxelModel[] = [
   },
   {
     id: 'tree',
-    name: 'Pine Tree',
+    name: '松树',
     category: 'object',
     voxels: [
         // Trunk
@@ -310,7 +310,7 @@ export const PRESET_MODELS: VoxelModel[] = [
   },
   {
     id: 'house',
-    name: 'Cozy Cottage',
+    name: '温馨小屋',
     category: 'object',
     voxels: [
         // Grass Base
@@ -353,7 +353,7 @@ export const PRESET_MODELS: VoxelModel[] = [
   },
   {
     id: 'flower',
-    name: 'Sunflower',
+    name: '向日葵',
     category: 'object',
     voxels: [
         // Pot
@@ -383,7 +383,7 @@ export const PRESET_MODELS: VoxelModel[] = [
   },
   {
     id: 'car',
-    name: 'Race Car',
+    name: '赛车',
     category: 'vehicle',
     voxels: [
         // Wheels (Black with White Hubs)

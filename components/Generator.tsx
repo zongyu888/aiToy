@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { VoxelModel } from '../types';
 import { generateVoxelModel } from '../services/geminiService';
@@ -30,14 +31,14 @@ export const Generator: React.FC<GeneratorProps> = ({ onGenerated }) => {
     setError(null);
 
     try {
-      const desc = prompt || "A random object";
+      const desc = prompt || "一个随机物体";
       const model = await generateVoxelModel(desc, selectedImage || undefined);
       onGenerated(model);
       // Reset after success
       setPrompt('');
       setSelectedImage(null);
     } catch (err) {
-      setError("Failed to generate. Please try again.");
+      setError("生成失败，请重试。");
     } finally {
       setIsLoading(false);
     }
@@ -47,24 +48,24 @@ export const Generator: React.FC<GeneratorProps> = ({ onGenerated }) => {
     <div className="p-6 bg-white border-t border-gray-100 md:border-t-0 md:border-l md:w-80 shadow-lg z-10 flex flex-col h-full pt-20 md:pt-6">
         <div className="mb-6">
             <h2 className="text-xl font-bold text-gray-800 flex items-center gap-2">
-                ✨ AI Builder
+                ✨ AI 构建器
             </h2>
-            <p className="text-sm text-gray-500 mt-1">Describe it or upload a photo.</p>
+            <p className="text-sm text-gray-500 mt-1">描述它或上传一张照片。</p>
         </div>
 
       <div className="space-y-6 flex-1 overflow-y-auto pr-1">
         <div>
-          <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Text Description</label>
+          <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">文字描述</label>
           <textarea
             value={prompt}
             onChange={(e) => setPrompt(e.target.value)}
-            placeholder="e.g., A blue race car"
+            placeholder="例如：一辆蓝色的赛车"
             className="w-full p-3 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none resize-none h-24"
           />
         </div>
 
         <div>
-            <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Reference Image (Optional)</label>
+            <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">参考图片（可选）</label>
             <div className="relative group">
                 <input
                     type="file"
@@ -82,7 +83,7 @@ export const Generator: React.FC<GeneratorProps> = ({ onGenerated }) => {
                     ) : (
                         <div className="flex flex-col items-center justify-center pt-5 pb-6">
                             <span className="text-3xl mb-2 text-gray-400">📷</span>
-                            <p className="text-xs text-gray-500 font-medium">Click to upload</p>
+                            <p className="text-xs text-gray-500 font-medium">点击上传</p>
                         </div>
                     )}
                 </label>
@@ -119,9 +120,9 @@ export const Generator: React.FC<GeneratorProps> = ({ onGenerated }) => {
                         <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                         <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                     </svg>
-                    Dreaming...
+                    正在构思...
                 </span>
-            ) : 'Generate Voxel Art'}
+            ) : '生成体素艺术'}
         </button>
       </div>
     </div>

@@ -1,10 +1,11 @@
+
 import { GoogleGenAI, Type } from "@google/genai";
 import { Voxel, VoxelModel } from '../types';
 
 const getClient = () => {
     const apiKey = process.env.API_KEY;
     if (!apiKey) {
-        throw new Error("API Key is missing. Please set REACT_APP_GEMINI_API_KEY.");
+        throw new Error("缺少 API 密钥。请设置 REACT_APP_GEMINI_API_KEY。");
     }
     return new GoogleGenAI({ apiKey });
 };
@@ -13,16 +14,16 @@ const getClient = () => {
 const voxelSchema = {
     type: Type.OBJECT,
     properties: {
-        modelName: { type: Type.STRING, description: "A creative name for the voxel model" },
+        modelName: { type: Type.STRING, description: "一个富有创意的模型名称 (中文)" },
         voxels: {
             type: Type.ARRAY,
             items: {
                 type: Type.OBJECT,
                 properties: {
-                    x: { type: Type.INTEGER, description: "X coordinate (approx -5 to 5)" },
-                    y: { type: Type.INTEGER, description: "Y coordinate (approx -5 to 5)" },
-                    z: { type: Type.INTEGER, description: "Z coordinate (approx -5 to 5)" },
-                    color: { type: Type.STRING, description: "Hex color code, e.g. #FF0000" }
+                    x: { type: Type.INTEGER, description: "X 坐标 (大约 -5 到 5)" },
+                    y: { type: Type.INTEGER, description: "Y 坐标 (大约 -5 到 5)" },
+                    z: { type: Type.INTEGER, description: "Z 坐标 (大约 -5 到 5)" },
+                    color: { type: Type.STRING, description: "十六进制颜色代码, 例如 #FF0000" }
                 },
                 required: ["x", "y", "z", "color"]
             }
@@ -46,6 +47,7 @@ export const generateVoxelModel = async (prompt: string, imageBase64?: string): 
     Use vibrant, toy-like colors.
     Ensure structural integrity (blocks should mostly connect).
     Output valid JSON matching the schema.
+    The modelName should be in Chinese.
     Request: ${prompt}
     `;
 
@@ -76,13 +78,13 @@ export const generateVoxelModel = async (prompt: string, imageBase64?: string): 
         });
 
         const text = response.text;
-        if (!text) throw new Error("No response from AI");
+        if (!text) throw new Error("AI 未响应");
 
         const parsed = JSON.parse(text);
         
         const newModel: VoxelModel = {
             id: Math.random().toString(36).substr(2, 9),
-            name: parsed.modelName || "AI Creation",
+            name: parsed.modelName || "AI 作品",
             category: 'custom',
             voxels: parsed.voxels.map((v: any, idx: number) => ({
                 id: `ai-${idx}`,
